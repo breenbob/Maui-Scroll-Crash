@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="_8247_ScrollCrash.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:_8247_ScrollCrash.Models"
+    xmlns:vms="clr-namespace:_8247_ScrollCrash.ViewModels">
+    <ContentPage.BindingContext>
+        <vms:MainPageViewModel />
+    </ContentPage.BindingContext>
+    <ListView
+        GroupDisplayBinding="{Binding Title}"
+        IsGroupingEnabled="true"
+        ItemsSource="{Binding GroupedItems}"
+        SelectionMode="None"
+        VerticalOptions="Center">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ContentView Padding="10,10,15,10">
+                        <Frame HasShadow="True">
+                            <VerticalStackLayout x:DataType="models:PhoneBookItem">
+                                <Label
+                                    FontSize="16"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding Title}" />
+
+                                <Label FontSize="16" HorizontalOptions="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding FirstName}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding LastName}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label
+                                    FontSize="16"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding PhoneNumber}" />
+
+                                <Label
+                                    FontSize="16"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding EmailAddress}" />
+
+                                <Label
+                                    FontSize="16"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding DateOfBirth, StringFormat='{0:dd/MM/yyyy HH:mm}'}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </ContentView>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+
+</ContentPage>
